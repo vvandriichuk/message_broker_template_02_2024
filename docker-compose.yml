@@ -1,0 +1,18 @@
+version: '3'
+services:
+  broker-app:
+    build: .
+    environment:
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+      - AWS_REGION_NAME=${AWS_REGION_NAME}
+      - APP_ACCESS_KEY=${APP_ACCESS_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+    volumes:
+      - ./app:/app
+    networks:
+      - test-fastapi-sql-network
+
+networks:
+  test-fastapi-sql-network:
+    external: true
